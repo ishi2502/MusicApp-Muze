@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>MUZE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="/muze.css">
+    <style>
+        #singername {
+            padding-top: 20px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            song();
+            song();
+            song();
+            
+        });
+        //for appending each of the songs in the database for the singer; send in parameters the data, append 1 song in one execution
+        function song(){
+            // let song_container = document.createElement('div');
+            // song_container.className = 'song-container';
+            // let ndiv = document.createElement('div');
+            // let image = document.createElement('img');
+            // image.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHuYElGG0FuCT4onYAC0VEHg82GTIs0o9jBA&usqp=CAU";
+            // image.width = 100;
+            // image.className = 'img-fluid rounded-circle mb-3 img-thumbnail shadow-sm';
+            // ndiv.appendChild(image);
+            // let hd5 = document.createElement('h5');
+            // hd5.className = 'mb-0';
+            // hd5.innerHTML = "Name of Song";
+            // ndiv.appendChild(hd5);
+            let sp = document.createElement('span');
+            sp.className = "small text-uppercase text-muted";
+            sp.innerHTML = "Duration";
+            ndiv.appendChild(sp);
+            song_container.appendChild(ndiv);
+            document.getElementsByClassName("column text-center")[0].appendChild(song_container);
+        }
+    </script> -->
+</head>
+
+<body class="chng_body">
+    <!--responsive navbar-->
+    <nav class="navbar navbar-light bg-light navb">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <img class="sidebar-logo" src="/images/full_logo.png">
+                    <button type="button" class="btn-close text-reset closebutton" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active side-icon" aria-current="page" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link side-icon" href="/search">Search</a>
+                        </li>
+                        <!-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle side-icon" href="#" id="offcanvasNavbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Playlist
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+                                <li><a class="dropdown-item" href="#">Create Playlist</a></li>
+                                <li><a class="dropdown-item" href="#">View playlist</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--end responsive navbar-->
+        <span id="wname">
+            <img class="logo" src="/images/logo.jpg">
+            <span class="muze">MUZE</span>
+        </span>
+        <span class="welcome">SONGS</span>
+        <span class="signuplogin">
+            <% if( message) { %>
+                <a href="/logout"><button class="log">LOG OUT</button></a>
+                <% } else {%>
+                    <a href="/signup"><button class="sign">SIGN UP</button></a>
+                    <a href="/login"><button class="log">LOGIN</button></a>
+                    <% } %>
+        </span>
+    </nav>
+
+
+
+    <h1 id="day">GOOD</h1>
+
+
+    <div class="container py-5">
+        <div class="row text-center ">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="display-4" id="singername">
+                    <%= singername %>
+                </h1>
+                <p class="lead mb-0">Top songs by <%= singername %>
+                </p>
+            </div>
+        </div>
+    </div><!-- End -->
+
+
+    <div class="container">
+        <div class="column text-center">
+            <% for(let i=0;i<arr.length;i++) { %>
+            <div class="song-container">
+                <div>
+                    <a href="/singer/<%= singername %>/<%= arr[i].Song_name %>"><img src="/images/playbtn.jpg"
+                            class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" width="100"></a>
+                    <h5 class="mb-0"><%= arr[i].Song_name %></h5>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+<br>
+<br>
+    <footer>
+        <p>Muze is the one-stop solution for all your music needs. Muze offers you free, unlimited access to over <br>30
+            million Hindi Songs, Bollywood Music, English MP3 songs & Punjabi Music.<br></p>
+        <div>
+            © Muze Ltd. 2021, All Rights Reserved
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="/home.js"></script>
+</body>
+
+</html>
